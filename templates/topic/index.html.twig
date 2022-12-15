@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TopicController!{% endblock %}
+{% block title %}Topics{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,8 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/SfForum/src/Controller/TopicController.php'|file_link(0) }}">src/Controller/TopicController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/SfForum/templates/topic/index.html.twig'|file_link(0) }}">templates/topic/index.html.twig</a></code></li>
-    </ul>
+    {% for topic in topics %}
+        <h1>Topic {{ topic }} </h1><br>
+    {% endfor %}
 </div>
 {% endblock %}
