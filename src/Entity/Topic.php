@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\TopicRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Post;
+use App\Entity\User;
+use DateTimeInterface;
+use App\Entity\Categorie;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TopicRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use phpDocumentor\Reflection\Types\Null_;
 
 #[ORM\Entity(repositoryClass: TopicRepository::class)]
 class Topic
@@ -20,12 +25,14 @@ class Topic
     private ?string $titre = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateCreation = null;
+    private ?DateTimeInterface $dateCreation = null;
 
     #[ORM\Column]
+    #[ORM\JoinColumn(nullable: true)]
     private ?bool $resolu = null;
 
     #[ORM\Column]
+    #[ORM\JoinColumn(nullable: true)]
     private ?bool $locked = null;
 
     #[ORM\ManyToOne(inversedBy: 'topics')]
@@ -153,6 +160,6 @@ class Topic
 
     public function __toString()
     {
-        return $this->titre;
+        return $this->titre ;
     }
 }

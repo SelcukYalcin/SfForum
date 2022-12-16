@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\Topic;
 use App\Entity\Categorie;
@@ -12,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class TopicType extends AbstractType
 {
@@ -19,11 +21,8 @@ class TopicType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, ['label' => 'Titre :'])
-            ->add('dateCreation', DateType::class, ['label' => ''])
-            ->add('resolu')
-            ->add('locked')
-            ->add('categorie', EntityType::class, ['class' => Categorie::class])
-            ->add('users', EntityType::class, ['class' => User::class])
+            ->add('dateCreation', DateType::class, ['label' => 'Date de création :','widget' => 'single_text', ])
+            ->add('posts', EntityType::class, ['class' => Post::class, 'choice_label' => 'message', 'mapped' => false])
             ->add('submit',SubmitType::class, ['attr' => ['class' => 'btn']])
         ;
     }
